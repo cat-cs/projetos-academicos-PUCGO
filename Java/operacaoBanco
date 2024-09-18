@@ -1,0 +1,14 @@
+import java.util.scanner
+
+public class OperacaoBanco {
+	public static void main (String args []) {
+	
+	int saldo, saldoFinal
+	\\Declarando valor hipotético para saldo
+	saldo= 1000
+	
+	Scanner saque = new Scanner(System.in);
+	System.out.println("Qual valor deseja sacar?");
+	int valorSaque = saque.nextInt();
+    }
+}
