@@ -7,15 +7,17 @@ ChatBot: Olá! Seja bem-vindo à nossa clínica médica. Como posso ajudar você
 ChatBot: Ótimo! O que você gostaria de fazer?
 1 – Agendar uma consulta
 2 – Cancelar uma consulta
+0 – Retornar ao menu principal
 
     Usuário: 1
-    ChatBot: Para agendar uma consulta, por favor, informe a especialidade que você precisa.
-    1 – Clínica Geral
-    2 – Pediatria
-    3 – Ginecologia
-    2 – Cardiologia
-    3 – Dermatologia
-        ChatBot: Sua consulta foi marcada com sucesso!
+    ChatBot: Para agendar uma consulta, por favor, informe a especialidade que você precisa.\n
+    1 – Clínica Geral\n
+    2 – Pediatria\n
+    3 – Ginecologia\n
+    4 – Cardiologia\n
+    5 – Dermatologia\n
+    0 – Retornar ao menu principal\n
+        ChatBot: Sua consulta com %s foi marcada com sucesso!
 
 
     Usuário: 2
@@ -23,27 +25,31 @@ ChatBot: Ótimo! O que você gostaria de fazer?
       Usuário: nomecompleto
     ChatBot: Sua consulta foi cancelada com sucesso!
 2
-ChatBot: Que tipo de informação sobre nossos serviços você gostaria?
-1 – Consultas médicas
-2 – Exames laboratoriais
-3 – Vacinas disponíveis
+ChatBot: Que tipo de informação sobre nossos serviços você gostaria?\n
+1 – Consultas médicas\n
+2 – Exames laboratoriais\n
+3 – Vacinas disponíveis\n
+0 – Retornar ao menu principal
 
       Usuário: 1
-      1 – Clínica Geral - R$ 120,00
-      2 – Pediatria - R$ 100,00
-      3 – Ginecologia - R$ 130,00
-      4 – Cardiologia - R$ 150,00
-      5 – Dermatologia - R$ 140,00
+      1 – Clínica Geral - R$ 120,00\n
+      2 – Pediatria - R$ 100,00\n
+      3 – Ginecologia - R$ 130,00\n
+      4 – Cardiologia - R$ 150,00\n
+      5 – Dermatologia - R$ 140,00\n
+      0 – Retornar ao menu principal
 
       Usuário: 2
-      1 – Hemograma - R$ 50,00
-      2 – Exames de urina - R$ 30,00
-      3 – Sorologia para hepatite B e C - R$ 80,00
+      1 – Hemograma - R$ 50,00\n
+      2 – Exames de urina - R$ 30,00\n
+      3 – Sorologia para hepatite B e C - R$ 80,00\n
+      0 – Retornar ao menu principal\n
 
       Usuário: 3
-      1 – Vacina contra COVID-19 - R$ 0,00 (disponível gratuitamente)
-      2 – Vacina MMR (sarampo, caxumba e rubéola) - R$ 80,00
-      3 – Vacina HPV - R$ 150,00
+      1 – Vacina contra COVID-19 - R$ 0,00 (disponível gratuitamente)\n
+      2 – Vacina MMR (sarampo, caxumba e rubéola) - R$ 80,00\n
+      3 – Vacina HPV - R$ 150,00\n
+      0 – Retornar ao menu principal
 
 3
 ChatBot: Um momento, por favor. Estou conectando você a um atendente.
