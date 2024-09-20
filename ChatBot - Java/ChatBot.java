@@ -40,6 +40,7 @@ do {
 
                 case 0:
                     System.out.println("-----------------------");
+                    System.out.println(menuAgenda);
                     break;
 
             default: System.out.println("Opção Inválida!");
@@ -48,9 +49,9 @@ do {
 
         case 2:
             System.out.println(menuInfo);
-            int opcaoMenuInfo = entrada.nextInt();
-
+            int opcaoMenuInfo;
             do {
+                opcaoMenuInfo = entrada.nextInt();
             switch(opcaoMenuInfo){
                 case 1:
                     System.out.println(menuInfoConsulta);
@@ -68,9 +69,12 @@ do {
                     System.out.println("-----------------------");
                     break;
      
-            default: System.out.println("Opção Inválida!");    
+            default: System.out.println("Opção Inválida!");  
+             
             }
-            } while (opcaoMenuInfo != 0);  
+            
+            } while (opcaoMenuInfo != 0);
+            break;  
             
         case 3: 
             System.out.println("Célia: Um momento, por favor. Estou conectando você a um atendente.");  
