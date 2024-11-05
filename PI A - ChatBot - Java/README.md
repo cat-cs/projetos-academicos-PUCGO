@@ -1,2 +1,2 @@
-# PROJETO INTEGRADOR I – A
+## PROJETO INTEGRADOR I – A
 Neste projeto, foi desenvolvido um chatbot em Java, utilizando o Visual Studio Code como ambiente de desenvolvimento, com o objetivo de atender pacientes de uma clínica médica de médio porte. O chatbot foi projetado para responder a perguntas frequentes relacionadas à clínica, como agendamento de consultas, informações sobre serviços médicos e contato com atendentes. Através de uma base de conhecimento predefinida, o sistema fornece respostas rápidas e precisas, melhorando a experiência de atendimento e otimizando o tempo da equipe da clínica.
