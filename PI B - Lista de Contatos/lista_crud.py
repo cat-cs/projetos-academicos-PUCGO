@@ -1,4 +1,5 @@
 import mysql.connector
+from tabulate import tabulate #Biblioteca para print em tabela
 
 #Inicia conexao com servidor MySQL
 conexaoMysql = mysql.connector.connect(
@@ -9,11 +10,6 @@ conexaoMysql = mysql.connector.connect(
 )
 
 cursor = conexaoMysql.cursor()
-
-#comando = 'entre aspas simples' comando a ser executado, "aspas duplas para texto no sql"
-#cursor.execute(comando)
-# conexao.commit() para EDITAR banco de dados
-#resultado = cursor.fetchall() para LER banco de dados
 
 #CREATE(Inserir no Banco de Dados)
 def create ():
@@ -37,14 +33,15 @@ def create ():
     conexaoMysql.commit();
 
 #READ
-def read (tabela):
-    lerBD = f'SELECT * FROM {tabela}'
+def read ():
+    lerBD = 'SELECT contatos.Nome, GROUP_CONCAT(DISTINCT emails.Email SEPARATOR "; ") AS Emails, GROUP_CONCAT(DISTINCT CONCAT("(", telefones.DDD,") " ,telefones.Telefone) SEPARATOR "; ") AS Telefones FROM contatos LEFT JOIN telefones ON contatos.id = telefones.id_contatos INNER JOIN emails ON contatos.id = emails.id_contatos GROUP BY contatos.Nome;'
     cursor.execute(lerBD)
     resultado = cursor.fetchall();
-    print(resultado)
+    print(tabulate(resultado, headers=["Nome", "Emails", "Telefones"], tablefmt="grid"))
 
 #UPDATE
-def update (tabela, nome):
+def update ():
+    #Digite nome ou id para selecionar um contato
     atualizaDB = f'UPDATE {tabela} SET nome="{nome}" WHERE id = 1'
     cursor.execute(atualizaDB)
     conexaoMysql.commit();
@@ -57,20 +54,34 @@ def delete ():
     cursor.execute(deletar)   
     conexaoMysql.commit();
 
-opcao = int (input("Escolha a opção desejada \n 1- Adicionar Contato \n 2- Vizualizar Lista \n ->"))
+#---------------APLICAÇÃO---------------------------------------------------------------------------------------------------------
 
-#\n 3- Atualizar \n 4- Deletar \n 
-# elif opcao == 3:
-    #update() #adciona mais um telefone ou email/ altera telefone, email, nome
-#elif opcao == 4:
-    #delete()
+print("_____|Lista de Contatos|_____")
+while True: 
+    opcao = int (input("\n Escolha a opção desejada \n 1- Adicionar Contato \n 2- Vizualizar Lista \n 3- Sair \n -> "))
 
-if opcao == 1:
-    create()# adcionar telefone e email em tabelas fk
-elif opcao == 2:
-    read()# listar tabela contatos || Criar segundo read com join das duas tabelas para cada contato
-else: 
-    print("Opção Inválida")
+    if opcao == 1:
+        create()
+        break
+    elif opcao == 2:
+        read()
+    #-------------SUBMENU ALTERAÇÃO---------------------------------------------------------------------------------------------
+        opcao_contato = input("1- Alterar Dados         SAIR- Retornar ao início \n -> ")
+        if opcao_contato == "1":
+            update() #adciona mais um telefone ou email/ altera telefone, email, nome
+        elif opcao_contato.upper() == "SAIR":
+            print("\n Encerrando...")
+            break
+        else: 
+            print("Opção Inválida")
+    #----------------------------------------------------------------------------------------------------------------------------
+    
+    elif opcao == 3:
+        print("\n Encerrando...")
+        break
+    else: 
+        print("Opção Inválida")
+        
 
 
 
