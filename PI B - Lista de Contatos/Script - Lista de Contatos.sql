@@ -9,7 +9,7 @@ CREATE TABLE Contatos (
 CREATE TABLE Telefones 
 (  id_telefone INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
 DDD INT,
- Telefone INT,  
+ Telefone BIGINT,  
  id_contatos INT NOT NULL,
 FOREIGN KEY (id_contatos) REFERENCES Contatos(id) ON DELETE CASCADE
  ); 
