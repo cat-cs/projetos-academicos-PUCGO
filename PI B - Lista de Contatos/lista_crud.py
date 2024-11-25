@@ -16,9 +16,24 @@ cursor = conexaoMysql.cursor()
 #resultado = cursor.fetchall() para LER banco de dados
 
 #CREATE(Inserir no Banco de Dados)
-def create (tabela, nome):
-    inserir = f'INSERT INTO contatos {tabela} VALUE ("{nome}")'
-    cursor.execute(inserir)
+def create ():
+    print("***Adcione as informações de contato***")
+    nome = input("Nome: ")
+    ddd = int(input("DDD: "))
+    telefone = int(input("Telefone: "))
+    email = input("Email: ")
+
+    inserir_nome = f'INSERT INTO contatos (nome) VALUES ("{nome}")'
+    cursor.execute(inserir_nome)
+    id_contatos = cursor.lastrowid
+
+    inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES ({ddd}, {telefone}, {id_contatos})'
+    inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES ("{email}", {id_contatos})'
+    
+    
+    cursor.execute(inserir_telefone)
+    cursor.execute(inserir_email)
+
     conexaoMysql.commit();
 
 #READ
@@ -35,21 +50,25 @@ def update (tabela, nome):
     conexaoMysql.commit();
 
 #DELETE
-def delete (tabela, nome):
-    deletar = f'DELETE FROM {tabela} WHERE id = 1' 
+def delete ():
+    tabela = input("Escolha a tabela:")
+    id_user = int (input("Escolha o id:"))
+    deletar = f'DELETE FROM {tabela} WHERE id = {id_user}' 
     cursor.execute(deletar)   
     conexaoMysql.commit();
 
-opcao = input("Escolha a opção desejada \n 1- Adicionar \n 2- Ler \n 3- Atualizar \n 4- Deletar \n")
+opcao = int (input("Escolha a opção desejada \n 1- Adicionar Contato \n 2- Vizualizar Lista \n ->"))
+
+#\n 3- Atualizar \n 4- Deletar \n 
+# elif opcao == 3:
+    #update() #adciona mais um telefone ou email/ altera telefone, email, nome
+#elif opcao == 4:
+    #delete()
 
 if opcao == 1:
-    create()
+    create()# adcionar telefone e email em tabelas fk
 elif opcao == 2:
-    read()
-elif opcao == 3:
-    update()
-elif opcao == 4:
-    delete()
+    read()# listar tabela contatos || Criar segundo read com join das duas tabelas para cada contato
 else: 
     print("Opção Inválida")
 
