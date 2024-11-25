@@ -34,10 +34,10 @@ def create ():
 
 #READ
 def read ():
-    lerBD = 'SELECT contatos.Nome, GROUP_CONCAT(DISTINCT emails.Email SEPARATOR "; ") AS Emails, GROUP_CONCAT(DISTINCT CONCAT("(", telefones.DDD,") " ,telefones.Telefone) SEPARATOR "; ") AS Telefones FROM contatos LEFT JOIN telefones ON contatos.id = telefones.id_contatos INNER JOIN emails ON contatos.id = emails.id_contatos GROUP BY contatos.Nome;'
+    lerBD = 'SELECT contatos.id, contatos.Nome, GROUP_CONCAT(DISTINCT emails.Email SEPARATOR "; ") AS Emails, GROUP_CONCAT(DISTINCT CONCAT("(", telefones.DDD,") " ,telefones.Telefone) SEPARATOR "; ") AS Telefones FROM contatos LEFT JOIN telefones ON contatos.id = telefones.id_contatos INNER JOIN emails ON contatos.id = emails.id_contatos GROUP BY contatos.id, contatos.Nome;'
     cursor.execute(lerBD)
     resultado = cursor.fetchall();
-    print(tabulate(resultado, headers=["Nome", "Emails", "Telefones"], tablefmt="grid"))
+    print(tabulate(resultado, headers=["ID", "Nome", "Emails", "Telefones"], tablefmt="grid"))
 
 #UPDATE
 def update ():
@@ -66,9 +66,11 @@ while True:
     elif opcao == 2:
         read()
     #-------------SUBMENU ALTERAÇÃO---------------------------------------------------------------------------------------------
-        opcao_contato = input("1- Alterar Dados         SAIR- Retornar ao início \n -> ")
+        opcao_contato = input("1- Alterar Dados    2- Apagar Contato da Lista     SAIR- Retornar ao início \n -> ")
         if opcao_contato == "1":
             update() #adciona mais um telefone ou email/ altera telefone, email, nome
+        elif opcao_contato == "2":
+            delete()
         elif opcao_contato.upper() == "SAIR":
             print("\n Encerrando...")
             break
