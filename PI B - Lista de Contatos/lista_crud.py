@@ -13,7 +13,7 @@ cursor = conexaoMysql.cursor()
 
 #---------------CREATE-------------------------------------------------------------------------------------------------------------
 def create ():
-    print("***Adcione as informações de contato***")
+    print("___Adcione as informações de contato___")
     nome = input("Nome: ")
     ddd = int(input("DDD: "))
     telefone = int(input("Telefone: "))
@@ -30,7 +30,9 @@ def create ():
     cursor.execute(inserir_telefone)
     cursor.execute(inserir_email)
 
-    conexaoMysql.commit();
+    conexaoMysql.commit()
+    print("___Contato adicionado a lista com sucesso!___");
+
 
 #---------------READ---------------------------------------------------------------------------------------------------------------
 def read ():
@@ -41,14 +43,14 @@ def read ():
 
 #---------------UPDATE-------------------------------------------------------------------------------------------------------------
 def update ():
-    id_update = int (input("Digite id para selecionar um contato -> "))
+    id_update = int (input("Digite ID para selecionar um contato -> "))
     nomeSelecionado = exibeNomeContato(id_update)
     print(f"Contato selecionado: {nomeSelecionado}")
     opcao_update = int(input("Qual operação deseja realizar? 1- Atualizar contato   2-Adicionar ao Contato \n -> "))
     
     if opcao_update == 1:
         atualizaContato(id_update)
-        print("Contato atualizado com Sucesso!")
+        print("___Contato atualizado com Sucesso!___ \n")
     elif opcao_update == 2:
         adicionaNovoItem(id_update)
         print("Retornando ao menu...")
@@ -56,18 +58,18 @@ def update ():
 #---------------DELETE-------------------------------------------------------------------------------------------------------------
 def delete ():
     #Digite id para selecionar um contato
-    id_delete = int (input("Digite id para selecionar um contato -> "))
+    id_delete = int (input("Digite ID para selecionar um contato -> "))
     deletar = f'DELETE FROM contatos WHERE id = {id_delete}' 
     nomeExcluido = exibeNomeContato(id_delete)
-    verifica = input (f"Deseja excluir o contato de {nomeExcluido} ? Digite SIM/NAO\n -> ")
+    verifica = input (f"Deseja excluir o contato de {nomeExcluido}? Digite SIM/NAO\n -> ")
     if verifica.upper() == "SIM":
         cursor.execute(deletar)
         conexaoMysql.commit();
-        print("___Contato excluído com sucesso!___")
+        print("___Contato excluído com sucesso!___ \n")
     elif verifica.upper() == "NAO":
         print("Retornando ao menu...");
     else:
-        print("Opção Inválida. Digite SIM/NAO");
+        print("Opção Inválida. Digite SIM ou NAO");
 
 #---------------FUNÇÕES AUXILIARES-------------------------------------------------------------------------------------------------
 def exibeNomeContato(id):
@@ -139,17 +141,17 @@ def atualizaContato(id):
 
 #---------------APLICAÇÃO---------------------------------------------------------------------------------------------------------
 
-print("_____|Lista de Contatos|_____")
+print("_-_-_-_-_|Lista de Contatos|_-_-_-_-_")
 while True: 
     opcao = int (input("\n Escolha a opção desejada \n 1- Adicionar Contato \n 2- Vizualizar Lista \n 3- Sair \n -> "))
 
     if opcao == 1:
         create()
-        print("___Contato adicionado a lista com sucesso!___")
-        
+
     elif opcao == 2:
         read()
     #-------------SUBMENU ALTERAÇÃO---------------------------------------------------------------------------------------------
+        print("\n______________Opções da Lista_____________")
         opcao_contato = input("1- Alterar Dados    2- Apagar Contato da Lista     SAIR- Retornar ao início \n -> ")
         if opcao_contato == "1":
             update()
