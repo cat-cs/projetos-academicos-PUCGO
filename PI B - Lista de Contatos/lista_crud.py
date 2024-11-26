@@ -41,18 +41,57 @@ def read ():
 
 #UPDATE
 def update ():
-    #Digite nome ou id para selecionar um contato
+    id_update = int (input("Digite id para selecionar um contato -> "))
+    nomeSelecionado = exibeNomeContato(id_update)
+    print(f"Contato selecionado: {nomeSelecionado}")
+    
+    
     atualizaDB = f'UPDATE {tabela} SET nome="{nome}" WHERE id = 1'
     cursor.execute(atualizaDB)
     conexaoMysql.commit();
 
 #DELETE
 def delete ():
-    tabela = input("Escolha a tabela:")
-    id_user = int (input("Escolha o id:"))
-    deletar = f'DELETE FROM {tabela} WHERE id = {id_user}' 
-    cursor.execute(deletar)   
-    conexaoMysql.commit();
+    #Digite id para selecionar um contato
+    id_delete = int (input("Digite id para selecionar um contato -> "))
+    deletar = f'DELETE FROM contatos WHERE id = {id_delete}' 
+    nomeExcluido = exibeNomeContato(id_delete)
+    verifica = input (f"Deseja excluir o contato de {nomeExcluido} ? Digite SIM/NAO\n -> ")
+    if verifica.upper() == "SIM":
+        cursor.execute(deletar)
+        conexaoMysql.commit();
+        print("___Contato excluído com sucesso!___")
+    elif verifica.upper() == "NAO":
+        print("Retornando ao menu...");
+    else:
+        print("Opção Inválida. Digite SIM/NAO");
+
+def exibeNomeContato(id):
+    exibeNomeporID = f'SELECT Nome FROM contatos WHERE id = {id}'
+    cursor.execute(exibeNomeporID)
+    nome_retornado = cursor.fetchone()
+    return nome_retornado[0].upper();
+
+def adicionaNovoItem(id):
+    opcao_adiciona = int(input("1- Adicionar Email      2- Adicionar Telefone"))
+    if opcao_adiciona == 1:
+        email = input("Email: ")
+        inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES ("{email}", {id})'
+        cursor.execute(inserir_email)
+        conexaoMysql.commit();
+        print("Email adicionado com sucesso!")
+    elif opcao_adiciona == 2:
+        ddd = int(input("DDD: "))
+        telefone = int(input("Telefone: "))
+        inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES ({ddd}, {telefone}, {id})'
+        cursor.execute(inserir_telefone)
+        conexaoMysql.commit();
+        print("Telefone adicionado com sucesso!")
+    else: 
+        print("Opção Inválida")
+
+        
+    
 
 #---------------APLICAÇÃO---------------------------------------------------------------------------------------------------------
 
@@ -62,7 +101,8 @@ while True:
 
     if opcao == 1:
         create()
-        break
+        print("___Contato adicionado a lista com sucesso!___")
+        
     elif opcao == 2:
         read()
     #-------------SUBMENU ALTERAÇÃO---------------------------------------------------------------------------------------------
@@ -73,6 +113,8 @@ while True:
             delete()
         elif opcao_contato.upper() == "SAIR":
             print("\n Encerrando...")
+            cursor.close()
+            conexaoMysql.close()
             break
         else: 
             print("Opção Inválida")
@@ -80,13 +122,12 @@ while True:
     
     elif opcao == 3:
         print("\n Encerrando...")
+        cursor.close()
+        conexaoMysql.close()
         break
     else: 
         print("Opção Inválida")
         
-
-
-
 #Fecha conexao
 cursor.close()
 conexaoMysql.close()
