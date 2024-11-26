@@ -46,7 +46,7 @@ def update ():
     id_update = int (input("Digite ID para selecionar um contato -> "))
     nomeSelecionado = exibeNomeContato(id_update)
     print(f"Contato selecionado: {nomeSelecionado}")
-    opcao_update = int(input("Qual operação deseja realizar? 1- Atualizar contato   2-Adicionar ao Contato \n -> "))
+    opcao_update = int(input("Qual operação deseja realizar? 1- Atualizar Contato   2-Adicionar ao Contato \n -> "))
     
     if opcao_update == 1:
         atualizaContato(id_update)
@@ -57,7 +57,6 @@ def update ():
     
 #---------------DELETE-------------------------------------------------------------------------------------------------------------
 def delete ():
-    #Digite id para selecionar um contato
     id_delete = int (input("Digite ID para selecionar um contato -> "))
     deletar = f'DELETE FROM contatos WHERE id = {id_delete}' 
     nomeExcluido = exibeNomeContato(id_delete)
