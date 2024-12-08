@@ -140,8 +140,8 @@ def atualizaContato(id):
 
 #---------------APLICAÇÃO---------------------------------------------------------------------------------------------------------
 
-print("_-_-_-_-_|Lista de Contatos|_-_-_-_-_")
 while True: 
+    print("_-_-_-_-_|Lista de Contatos|_-_-_-_-_")
     opcao = int (input("\n Escolha a opção desejada \n 1- Adicionar Contato \n 2- Vizualizar Lista \n 3- Sair \n -> "))
 
     if opcao == 1:
@@ -157,10 +157,8 @@ while True:
         elif opcao_contato == "2":
             delete()
         elif opcao_contato.upper() == "SAIR":
-            print("\n Encerrando...")
-            cursor.close()
-            conexaoMysql.close()
-            break
+            print("Retornando...\n")
+            continue
         else: 
             print("Opção Inválida")
     #----------------------------------------------------------------------------------------------------------------------------
