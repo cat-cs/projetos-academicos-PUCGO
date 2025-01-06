@@ -19,16 +19,16 @@ def create ():
     telefone = int(input("Telefone: "))
     email = input("Email: ")
 
-    inserir_nome = f'INSERT INTO contatos (nome) VALUES ("{nome}")'
-    cursor.execute(inserir_nome)
+    inserir_nome = f'INSERT INTO contatos (nome) VALUES (%s)'
+    cursor.execute(inserir_nome, (nome,))
     id_contatos = cursor.lastrowid
 
-    inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES ({ddd}, {telefone}, {id_contatos})'
-    inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES ("{email}", {id_contatos})'
+    inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES (%s, %s, %s)'
+    inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES (%s, %s)'
     
     
-    cursor.execute(inserir_telefone)
-    cursor.execute(inserir_email)
+    cursor.execute(inserir_telefone, (ddd, telefone, id_contatos))
+    cursor.execute(inserir_email, (email, id_contatos))
 
     conexaoMysql.commit()
     print("___Contato adicionado a lista com sucesso!___");
@@ -58,11 +58,11 @@ def update ():
 #---------------DELETE-------------------------------------------------------------------------------------------------------------
 def delete ():
     id_delete = int (input("Digite ID para selecionar um contato -> "))
-    deletar = f'DELETE FROM contatos WHERE id = {id_delete}' 
+    deletar = f'DELETE FROM contatos WHERE id = (%s)' 
     nomeExcluido = exibeNomeContato(id_delete)
     verifica = input (f"Deseja excluir o contato de {nomeExcluido}? Digite SIM/NAO\n -> ")
     if verifica.upper() == "SIM":
-        cursor.execute(deletar)
+        cursor.execute(deletar, (id_delete))
         conexaoMysql.commit();
         print("___Contato excluído com sucesso!___ \n")
     elif verifica.upper() == "NAO":
@@ -72,20 +72,20 @@ def delete ():
 
 #---------------FUNÇÕES AUXILIARES-------------------------------------------------------------------------------------------------
 def exibeNomeContato(id):
-    exibeNomeporID = f'SELECT Nome FROM contatos WHERE id = {id}'
-    cursor.execute(exibeNomeporID)
+    exibeNomeporID = f'SELECT Nome FROM contatos WHERE id = %s'
+    cursor.execute(exibeNomeporID, (id,))
     nome_retornado = cursor.fetchone()
     return nome_retornado[0].upper();
 
 def exibeEmailsContato(id):
-        exibeEmailporID = f'SELECT id_email, Email FROM emails WHERE id_contatos = {id}'
-        cursor.execute(exibeEmailporID)
+        exibeEmailporID = f'SELECT id_email, Email FROM emails WHERE id_contatos = (%s)'
+        cursor.execute(exibeEmailporID, (id,))
         email_retornado = cursor.fetchall()
         return email_retornado;
 
 def exibeTelefonesContato(id):
-        exibeTelefoneporID = f'SELECT id_telefone, ddd, Telefone FROM telefones WHERE id_contatos = {id}'
-        cursor.execute(exibeTelefoneporID)
+        exibeTelefoneporID = f'SELECT id_telefone, ddd, Telefone FROM telefones WHERE id_contatos = (%s)'
+        cursor.execute(exibeTelefoneporID, (id,))
         telefone_retornado = cursor.fetchall()
         return telefone_retornado;
 
@@ -93,15 +93,15 @@ def adicionaNovoItem(id):
     opcao_adiciona = int(input("1- Adicionar Email      2- Adicionar Telefone"))
     if opcao_adiciona == 1:
         email = input("Email: ")
-        inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES ("{email}", {id})'
-        cursor.execute(inserir_email)
+        inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES (%s, %s)'
+        cursor.execute(inserir_email, (email, id))
         conexaoMysql.commit();
         print("Email adicionado com sucesso!")
     elif opcao_adiciona == 2:
         ddd = int(input("DDD: "))
         telefone = int(input("Telefone: "))
-        inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES ({ddd}, {telefone}, {id})'
-        cursor.execute(inserir_telefone)
+        inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES (%s, %s, %s)'
+        cursor.execute(inserir_telefone, (ddd, telefone, id))
         conexaoMysql.commit();
         print("Telefone adicionado com sucesso!")
     else: 
@@ -111,8 +111,8 @@ def atualizaContato(id):
     opcao_atualizaContato = int(input("Qual campo deseja alterar? 1- Nome   2-Email    3-Telefone \n -> "))
     if opcao_atualizaContato == 1: #ALTERAR NOME
         novo_nome = input("Novo nome: ")
-        atualizaNome = f'UPDATE contatos SET nome="{novo_nome}" WHERE id = {id}'
-        cursor.execute(atualizaNome)
+        atualizaNome = f'UPDATE contatos SET nome=(%s) WHERE id = (%s)'
+        cursor.execute(atualizaNome, (novo_nome, id))
         conexaoMysql.commit();
     
     elif opcao_atualizaContato == 2: #ALTERAR EMAIL
@@ -120,8 +120,8 @@ def atualizaContato(id):
         print(tabulate(lista_email, headers=["ID Email", "Emails do Contato"], tablefmt="grid"))
         id_email_alterado = int(input("Digite o ID do email a ser alterado -> "))        
         novo_email = input("Novo email: ")
-        atualizaEmail = f'UPDATE emails SET email="{novo_email}" WHERE id_email = {id_email_alterado}'
-        cursor.execute(atualizaEmail)
+        atualizaEmail = f'UPDATE emails SET email=(%s) WHERE id_email = (%s)'
+        cursor.execute(atualizaEmail, (novo_email, id_email_alterado))
         conexaoMysql.commit();
     
     elif opcao_atualizaContato == 3: #ALTERAR TELEFONE
@@ -130,8 +130,8 @@ def atualizaContato(id):
         id_telefone_alterado = int(input("Digite o ID do telefone a ser alterado -> "))        
         novo_ddd = input("Novo DDD: ")
         novo_telefone = input("Novo teleone: ")
-        atualizaTelefone = f'UPDATE telefones SET ddd={novo_ddd}, telefone={novo_telefone} WHERE id_telefone = {id_telefone_alterado}'
-        cursor.execute(atualizaTelefone)
+        atualizaTelefone = f'UPDATE telefones SET ddd=(%s), telefone=(%s) WHERE id_telefone = (%s)'
+        cursor.execute(atualizaTelefone, (novo_ddd, novo_telefone, id_telefone_alterado))
         conexaoMysql.commit();  
     else:
         print("Opção Inválida");
