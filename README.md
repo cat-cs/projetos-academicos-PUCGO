@@ -1,25 +1,7 @@
 ## Projetos Acadêmicos
 Repositório para armezenar códigos e programas criados para Projetos Acadêmicos Integradores (PI) do curso de Análise e Desenvolvimento de Sistemas da PUC-GO.
 
-## 1. Lista de Contatos (Python + MySQL)
-
-**Descrição:**  
-Sistema simples para gerenciamento de contatos com Python e MySQL.
-
-### Funcionalidades:
-- **Adicionar Contato:** Permite adicionar novos contatos com nome, telefone e e-mail.
-- **Visualizar Contatos:** Exibe uma lista de contatos com nome, telefone e e-mail.
-- **Alterar Dados de Contato:** Permite atualizar as informações de um contato existente.
-- **Excluir Contato:** Remove um contato da lista.
-
-### Requisitos:
-- Python 3.x
-- MySQL
-- Bibliotecas Python: `mysql-connector`, `tabulate`
-
----
-
-## 2. ChatBot Clínica Médica (Java)
+## 1. PI-A ChatBot Clínica Médica (Java)
 
 **Descrição:**  
 Chatbot desenvolvido para auxiliar no atendimento de uma clínica médica, com funcionalidades como agendamento de consultas e interação com um atendente humano.
@@ -37,7 +19,25 @@ Chatbot desenvolvido para auxiliar no atendimento de uma clínica médica, com f
 
 ---
 
-## 3. Lista de Contatos (Flutter)
+## 2. PI-B Lista de Contatos (Python + MySQL)
+
+**Descrição:**  
+Sistema simples para gerenciamento de contatos com Python e MySQL.
+
+### Funcionalidades:
+- **Adicionar Contato:** Permite adicionar novos contatos com nome, telefone e e-mail.
+- **Visualizar Contatos:** Exibe uma lista de contatos com nome, telefone e e-mail.
+- **Alterar Dados de Contato:** Permite atualizar as informações de um contato existente.
+- **Excluir Contato:** Remove um contato da lista.
+
+### Requisitos:
+- Python 3.x
+- MySQL
+- Bibliotecas Python: `mysql-connector`, `tabulate`
+
+---
+
+## 3. PI V-A Lista de Contatos (Flutter)
 
 **Descrição:**  
 Aplicativo móvel para gerenciar uma lista de contatos com Flutter. Permite criar, visualizar, atualizar e excluir contatos.
