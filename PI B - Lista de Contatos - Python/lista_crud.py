@@ -15,22 +15,24 @@ cursor = conexaoMysql.cursor()
 def create ():
     print("___Adcione as informações de contato___")
     nome = input("Nome: ")
-    ddd = int(input("DDD: "))
-    telefone = int(input("Telefone: "))
+    while True:
+        try: 
+            ddd = input("DDD: ")
+            telefone = input("Telefone: ")
+            int(ddd)
+            int(telefone)
+            break
+        except: 
+            print("Entrada Inválida! Insira apenas números")
+
     email = input("Email: ")
 
-    inserir_nome = f'INSERT INTO contatos (nome) VALUES (%s)'
-    cursor.execute(inserir_nome, (nome,))
+    inserir_nome(nome)
     id_contatos = cursor.lastrowid
 
-    inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES (%s, %s, %s)'
-    inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES (%s, %s)'
-    
-    
-    cursor.execute(inserir_telefone, (ddd, telefone, id_contatos))
-    cursor.execute(inserir_email, (email, id_contatos))
+    inserir_telefone(ddd, telefone, id_contatos)
+    inserir_email (email, id_contatos)
 
-    conexaoMysql.commit()
     print("___Contato adicionado a lista com sucesso!___");
 
 
@@ -71,6 +73,22 @@ def delete ():
         print("Opção Inválida. Digite SIM ou NAO");
 
 #---------------FUNÇÕES AUXILIARES-------------------------------------------------------------------------------------------------
+def inserir_nome (nome):
+    insert_nome= f'INSERT INTO contatos (nome) VALUES (%s)'
+    cursor.execute(insert_nome, (nome,))
+    conexaoMysql.commit();
+    
+def inserir_telefone (ddd, telefone, id_contatos):     
+    insert_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES (%s, %s, %s)'
+    cursor.execute(insert_telefone, (ddd, telefone, id_contatos))
+    conexaoMysql.commit();
+        
+def inserir_email (email, id_contatos):
+    insert_email= f'INSERT INTO emails (email, id_contatos) VALUES (%s, %s)'
+    cursor.execute(insert_email, (email, id_contatos)) 
+    conexaoMysql.commit();
+
+
 def exibeNomeContato(id):
     exibeNomeporID = f'SELECT Nome FROM contatos WHERE id = %s'
     cursor.execute(exibeNomeporID, (id,))
@@ -89,20 +107,25 @@ def exibeTelefonesContato(id):
         telefone_retornado = cursor.fetchall()
         return telefone_retornado;
 
+
 def adicionaNovoItem(id):
-    opcao_adiciona = int(input("1- Adicionar Email      2- Adicionar Telefone"))
+    opcao_adiciona = int(input("1- Adicionar Email      2- Adicionar Telefone \n -> "))
     if opcao_adiciona == 1:
         email = input("Email: ")
-        inserir_email = f'INSERT INTO emails (email, id_contatos) VALUES (%s, %s)'
-        cursor.execute(inserir_email, (email, id))
-        conexaoMysql.commit();
+        inserir_email(email, id)
         print("Email adicionado com sucesso!")
+        
     elif opcao_adiciona == 2:
-        ddd = int(input("DDD: "))
-        telefone = int(input("Telefone: "))
-        inserir_telefone = f'INSERT INTO telefones (DDD, Telefone, id_contatos) VALUES (%s, %s, %s)'
-        cursor.execute(inserir_telefone, (ddd, telefone, id))
-        conexaoMysql.commit();
+        while True:
+            try: 
+                ddd = input("DDD: ")
+                telefone = input("Telefone: ")
+                int(ddd)
+                int(telefone)
+                break
+            except: 
+                print("Entrada Inválida! Insira apenas números")
+        inserir_telefone(ddd, telefone, id)
         print("Telefone adicionado com sucesso!")
     else: 
         print("Opção Inválida")
@@ -128,8 +151,16 @@ def atualizaContato(id):
         lista_telefone = exibeTelefonesContato(id)
         print(tabulate(lista_telefone, headers=["ID Telefone", "DDD","Telefone do Contato"], tablefmt="grid"))
         id_telefone_alterado = int(input("Digite o ID do telefone a ser alterado -> "))        
-        novo_ddd = input("Novo DDD: ")
-        novo_telefone = input("Novo teleone: ")
+        while True:
+            try: 
+                novo_ddd = input("Novo DDD: ")
+                novo_telefone = input("Novo teleone: ")
+                int(novo_ddd)
+                int(novo_telefone)
+                break
+            except: 
+                print("Entrada Inválida! Insira apenas números")
+
         atualizaTelefone = f'UPDATE telefones SET ddd=(%s), telefone=(%s) WHERE id_telefone = (%s)'
         cursor.execute(atualizaTelefone, (novo_ddd, novo_telefone, id_telefone_alterado))
         conexaoMysql.commit();  
