@@ -2,6 +2,8 @@
 
 Este é um sistema simples para gerenciamento de contatos utilizando MySQL como banco de dados e Python para a implementação da lógica.
 
+> **ATUALIZAÇÃO**: Este projeto está em processo de reconstrução para aplicação de melhorias. A nova versão está sendo desenvolvida em outro repositório, para acessar clique [aqui](https://github.com/cat-cs/python-projects/tree/main/projeto-lista-contatos).
+
 ## Funcionalidades
 
 - **Adicionar contato**: Permite adicionar um novo contato, incluindo nome, telefone e e-mail.
