@@ -1,0 +1,26 @@
+CREATE DATABASE ListaContatos;
+USE ListaContatos;
+
+CREATE TABLE Contatos (
+ id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  
+ Nome VARCHAR(50)  NOT NULL
+ );
+
+CREATE TABLE Telefones 
+(  id_telefone INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
+DDD INT,
+ Telefone BIGINT,  
+ id_contatos INT NOT NULL,
+FOREIGN KEY (id_contatos) REFERENCES Contatos(id) ON DELETE CASCADE
+ ); 
+
+CREATE TABLE Emails 
+( 
+ id_email INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  
+ Email VARCHAR(100),  
+ id_contatos INT NOT NULL,
+   FOREIGN KEY (id_contatos) REFERENCES Contatos(id) ON DELETE CASCADE
+); 
+
+
+
