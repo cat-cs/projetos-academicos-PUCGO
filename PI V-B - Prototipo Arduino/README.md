@@ -1,0 +1,1 @@
+Link para Protótipo no ThinkerCad [aqui](https://www.tinkercad.com/things/5AK6jcR6vqw-pi-v-b/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=YIDjlA0aCebJf5z-QL2UP-Uz5tEqp-A0Xtxn0CP0n8E)
