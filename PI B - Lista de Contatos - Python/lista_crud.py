@@ -41,7 +41,7 @@ def read ():
     lerBD = 'SELECT contatos.id, contatos.Nome, GROUP_CONCAT(DISTINCT emails.Email SEPARATOR "; ") AS Emails, GROUP_CONCAT(DISTINCT CONCAT("(", telefones.DDD,") " ,telefones.Telefone) SEPARATOR "; ") AS Telefones FROM contatos LEFT JOIN telefones ON contatos.id = telefones.id_contatos INNER JOIN emails ON contatos.id = emails.id_contatos GROUP BY contatos.id, contatos.Nome;'
     cursor.execute(lerBD)
     resultado = cursor.fetchall();
-    print(tabulate(resultado, headers=["ID", "Nome", "Emails", "Telefones"], tablefmt="grid"))
+    late(resultado, headers=["ID", "Nome", "Emaprint(tabuils", "Telefones"], tablefmt="grid"))
 
 #---------------UPDATE-------------------------------------------------------------------------------------------------------------
 def update ():
@@ -106,6 +106,7 @@ def exibeTelefonesContato(id):
         cursor.execute(exibeTelefoneporID, (id,))
         telefone_retornado = cursor.fetchall()
         return telefone_retornado;
+
 
 
 def adicionaNovoItem(id):
