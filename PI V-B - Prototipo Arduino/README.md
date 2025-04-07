@@ -5,7 +5,7 @@ Este projeto apresenta um protótipo de automação residencial utilizando a pla
 ## Componentes Utilizados
 
 - **Arduino UNO**: Microcontrolador principal para integração dos sensores e comunicação com o sistema.
-- **Sensor de Temperatura e Umidade (TMP36)**: Responsável pela leitura da temperatura e umidade do ambiente.
+- **Sensor de Temperatura (TMP36)**: Responsável pela leitura da temperatura do ambiente.
 - **Sensor de Luminosidade (LDR)**: Captura a intensidade luminosa do ambiente.
 - **Potenciômetro**: Por limitações do ThinkerCad, foi utilizado um potenciômetro para simular a entrada de dados para Sensor de Umidade do Ar.
 
