@@ -1,6 +1,6 @@
 # Protótipo de Automação Residencial com Arduino
 
-Este projeto apresenta um protótipo de automação residencial utilizando a plataforma Thinkercad com Arduino. O objetivo é monitorar e controlar variáveis ambientais, como temperatura, umidade e luminosidade, proporcionando maior conforto e eficiência energética. O protótipo foi construído usando o simulador do ThinkerCad, para o módulo em Java foram adotadas medidas fictícias com biblioteca Radom.
+Este projeto apresenta um protótipo de automação residencial utilizando Arduino. O objetivo é monitorar e controlar variáveis ambientais, como temperatura, umidade e luminosidade, proporcionando maior conforto e eficiência energética. O protótipo foi construído usando o simulador do ThinkerCad, para o módulo em Java foram adotadas medidas fictícias com biblioteca Radom.
 
 ## Componentes Utilizados
 
