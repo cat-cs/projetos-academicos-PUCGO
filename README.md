@@ -1,4 +1,4 @@
-## Projetos Acadêmicos
+# Projetos Acadêmicos
 Repositório para armezenar códigos e programas criados para Projetos Acadêmicos Integradores (PI) do curso de Análise e Desenvolvimento de Sistemas da PUC-GO.
 
 ## 1. PI-A ChatBot Clínica Médica (Java)
@@ -52,3 +52,24 @@ Aplicativo móvel para gerenciar uma lista de contatos com Flutter. Permite cria
 - **Flutter:** Framework para desenvolvimento de aplicativos móveis.
 - **Dart:** Linguagem de programação usada no Flutter.
 - **SQLite:** Banco de dados local para armazenar contatos.
+
+---
+
+## 4. PI V-B - Protótipo de Automação Residencial com Arduino
+
+**Descrição:**  
+Protótipo de automação residencial utilizando Arduino para monitorar e controlar variáveis ambientais, como temperatura, umidade e luminosidade, proporcionando maior conforto e eficiência energética. O protótipo foi construído usando o simulador ThinkerCad, e para o módulo em Java foram adotadas medidas fictícias com a biblioteca Random.
+
+### Componentes Utilizados:
+- **Arduino UNO:** Microcontrolador principal para integração dos sensores e comunicação com o sistema.
+- **Sensor de Temperatura (TMP36):** Responsável pela leitura da temperatura do ambiente.
+- **Sensor de Luminosidade (LDR):** Captura a intensidade luminosa do ambiente.
+- **Potenciômetro:** Utilizado para simular a entrada de dados do Sensor de Umidade do Ar (devido a limitações do ThinkerCad).
+- **Código Fonte:** O código fonte para a programação do Arduino em Java.
+- **Interface Gráfica:** Protótipo de interface gráfica no Figma.
+
+
+
+
+
+
